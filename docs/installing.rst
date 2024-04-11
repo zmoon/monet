@@ -61,5 +61,5 @@ or you can manually download it from GitHub and install it from source::
 .. [1] MONET has dropped support for python 2.7 and requires python 3.6+.  For more information see the
    following references:
 
-      - `Python 3 Statement <https://python3statement.org>`__
+      - `Python 3 Statement <https://python3statement.github.io/>`__
       - `Tips on porting to Python 3 <https://docs.python.org/3/howto/pyporting.html>`__
