@@ -8,6 +8,7 @@ def draw_map(
     crs=None,
     natural_earth=False,
     coastlines=True,
+    counties=False,
     states=False,
     countries=True,
     resolution="10m",
@@ -78,6 +79,7 @@ def draw_map(
             facedolor='none',
             edgecolor='k',
             linewidth=linewidth,
+            )
 
     if coastlines:
         ax.coastlines(resolution, linewidth=linewidth)
@@ -87,6 +89,9 @@ def draw_map(
 
     if states:
         ax.add_feature(states_provinces, linewidth=linewidth)
+
+    if counties:
+        ax.add_feature(counties, linewidth=linewidth)
 
     if extent is not None:
         ax.set_extent(extent)
