@@ -76,7 +76,7 @@ def draw_map(
             category='cultural',
             name='admin_2_counties',
             scale=resolution,
-            facedolor='none',
+            facecolor='none',
             edgecolor='k',
             linewidth=linewidth,
             )
