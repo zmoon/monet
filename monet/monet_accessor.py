@@ -90,7 +90,7 @@ def _dataset_to_monet(dset, lat_name="latitude", lon_name="longitude", latlon2d=
             print("dset must be an xarray.DataArray or xarray.Dataset")
 
     if "south_north" in dset.dims:  # WRF WPS file
-        dset = dset.rename(dict(south_north="y", west_east="x"))
+        dset = dset.swap_dims(dict(south_north="y", west_east="x"))
         try:
             if isinstance(dset, xr.Dataset):
                 if "XLAT_M" in dset.data_vars:
@@ -194,7 +194,7 @@ def _coards_to_netcdf(dset, lat_name="lat", lon_name="lon"):
     lons, lats = meshgrid(lon, lat)
     x = arange(len(lon))
     y = arange(len(lat))
-    dset = dset.rename({lon_name: "x", lat_name: "y"})
+    dset = dset.swap_dims({lon_name: "x", lat_name: "y"})
     dset.coords["longitude"] = (("y", "x"), lons)
     dset.coords["latitude"] = (("y", "x"), lats)
     dset["x"] = x
@@ -223,7 +223,7 @@ def _dataarray_coards_to_netcdf(dset, lat_name="lat", lon_name="lon"):
     lons, lats = meshgrid(lon, lat)
     x = arange(len(lon))
     y = arange(len(lat))
-    dset = dset.rename({lon_name: "x", lat_name: "y"})
+    dset = dset.swap_dims({lon_name: "x", lat_name: "y"})
     dset.coords["latitude"] = (("y", "x"), lats)
     dset.coords["longitude"] = (("y", "x"), lons)
     dset["x"] = x
@@ -389,7 +389,7 @@ class MONETAccessorPandas:
             d = self._obj
         if d.index.name is not None:
             index_name = d.index.name
-        ds = d.to_xarray().rename({index_name: "x"}).expand_dims("y")
+        ds = d.to_xarray().swap_dims({index_name: "x"}).expand_dims("y")
         if "time" in ds.data_vars.keys():
             ds["time"] = ds.time.squeeze()  # it is only 1D
         if "latitude" in ds.data_vars.keys():
