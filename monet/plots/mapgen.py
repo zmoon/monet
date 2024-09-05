@@ -73,13 +73,13 @@ def draw_map(
 
     if counties:
         counties = cfeature.NaturalEarthFeature(
-            category='cultural',
-            name='admin_2_counties',
+            category="cultural",
+            name="admin_2_counties",
             scale=resolution,
-            facecolor='none',
-            edgecolor='k',
+            facecolor="none",
+            edgecolor="k",
             linewidth=linewidth,
-            )
+        )
 
     if coastlines:
         ax.coastlines(resolution, linewidth=linewidth)
